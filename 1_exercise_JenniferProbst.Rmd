@@ -1,0 +1,34 @@
+---
+title: "Exercise1"
+author: "Jennifer Probst"
+date: "2020 M09 15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Exercise
+
+#Sampling
+```{r}
+y <- seq(-2, to=4, length=500)
+distr <- rlnorm(y, 1, 0.25)
+sam <- sample(distr, 100, replace=FALSE)
+#calculate mean and variance
+mean(sam)
+var(sam)
+```
+The mean of the sample is 2.8304 and the variance is 0.5379.
+
+#Histogram of the sample
+```{r}
+hist(sam)
+```
+
+#Histogram of sample in log scale
+```{r}
+hist(log(sam))
+```
+
