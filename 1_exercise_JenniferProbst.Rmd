@@ -1,7 +1,7 @@
 ---
 title: "Exercise1"
 author: "Jennifer Probst"
-date: "2020 M09 15"
+date: "2020 M09 21"
 output: html_document
 ---
 
@@ -9,26 +9,41 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Exercise
-
-#Sampling
+##Sampling
 ```{r}
+set.seed(3) #Set the seed
 y <- seq(-2, to=4, length=500)
-distr <- rlnorm(y, 1, 0.25)
-sam <- sample(distr, 100, replace=FALSE)
+distr <- rlnorm(y, 1, (0.25)^2) #distribution over the values of y
+sam <- sample(distr, 100, replace=FALSE) #sample from this distribution
 #calculate mean and variance
 mean(sam)
 var(sam)
 ```
-The mean of the sample is 2.8304 and the variance is 0.5379.
+The mean of the sample is 2.7088 and the variance is 0.035161.
 
-#Histogram of the sample
-```{r}
-hist(sam)
+##Histogram of the sample
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+ggplot(data.frame(sam), aes(x=sam))+
+  geom_histogram(bins=15)+
+  xlab('samples')+
+  ggtitle('Histogram of the sample')
 ```
 
-#Histogram of sample in log scale
+##Histogram of sample in log scale
 ```{r}
-hist(log(sam))
+ggplot(data.frame(sam), aes(x=log10(sam)))+
+  geom_histogram(bins=15)+
+  xlab('samples')+
+  ggtitle('Histogram of the sample') +
+  scale_x_log10()
+
+
+#why does this not work?
+# ggplot(data.frame(sam), aes(x=sam))+
+#   geom_histogram(bins=15)+
+#   xlab('samples')+
+#   ggtitle('Histogram of the log_sample') + 
+#   scale_x_log10()
 ```
 
